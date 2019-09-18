@@ -2,10 +2,11 @@
 using ImageFilterings
 using CSV
 using AffineTransforms
+using Random
 
 # filter
 function convolution(img, param)
-  conv_img = imfilter(img, kernel.shape(param[1],param[1]))
+  conv_img = imfilter(img, kernel.shape(param[1],param[2]))
   return conv_img
 end
 
@@ -29,8 +30,9 @@ function squared_error(y,y_pred)
   return sqrt_e
 
 # 学習処理
-function main(img,lavel,w,b) # TODO : w b はどうやって渡すべきか
+function main(imgs,label,w,b,i,img_size)
   # input
+  img = reshape(imgs[i],[img_size,img_size]
 
   # Convolution
   conv_img = convolution(img, [7,8])
@@ -51,10 +53,12 @@ function main(img,lavel,w,b) # TODO : w b はどうやって渡すべきか
   relu3 = ReLU(affine)
 
   # Affine_2
-  affine = Affine(w,b,relu3)
+  affine2 = Affine(w,b,relu3)
 
   #SquaredError
+  result = squared_error(y, y_pred)
 
+  return result
 end
 
 # main
@@ -62,12 +66,25 @@ end
 csv_file = /var/www/training.csv
 csv_data = CSV.read(csv_file, header=false)
 
-# 画像
-x = csv_data[1]
-# 期待値
-y = csv_data[2]
+# 画像 image
+images = csv_data[1]
+# 期待値 label
+labels = csv_data[2]
 
-main(x,y)
+# 画像サイズ
+img_size = 299
+# 係数
+param = 0.1
+
+rng = MersenneTwister(1234);
+# 重み
+weghit = param * randn(rng, ComplexF32, (img_size, img_size))
+# バイアス　個性
+bias =
+
+for i in images.length
+  result = main(images,labels,weghit,bias,i,img_size)
+end
 
 #= installするパッケージ
 Pkg.add("ImageFilterings")
