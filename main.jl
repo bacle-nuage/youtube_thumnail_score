@@ -11,8 +11,8 @@ function color_to_gray(img)
 end
 
 # filter
-function convolution(img, param)
-  conv_img = imfilter(img, kernel.shape(param[1],param[2]))
+function convolution(img, filter)
+  conv_img = imfilter(img, filter)
   return conv_img
 end
 
@@ -36,7 +36,7 @@ function squared_error(y,y_pred)
   return sqrt_e
 
 # 学習処理
-function main(imgs,label,w,b,i,img_size)
+function main(x_train, y_train, img_size, weghit, bias)
   # input
   # グレースケールに変換
   g_img = color_to_gray(imgs[i])
@@ -45,15 +45,13 @@ function main(imgs,label,w,b,i,img_size)
 
   # Convolution
   # conv_img = convolution(img, [7,8])　TODO フィルタのかけ方調査の必要あり
-  w1 = w
-  conv_img = convolution(img, w)1
+  conv_img = convolution(img, w[1])
 
   # ReLU
   relu = ReLU(conv_img)
 
   # Convolution_2
-  w2 = w
-  conv_img2 = convolution(conv_img, w2)
+  conv_img2 = convolution(conv_img, w[2])
 
   # ReLU_2
   relu2 = ReLU(conv_img2)
@@ -85,24 +83,17 @@ test  = csv_data[1][121:end]
 x_train, y_train = train[1], train[2]
 x_test, y_test   = test[1], test[2]
 
-# エポック数
-epoch  = 100
-# 出力の数
-output = 100
-# 画像サイズ
-img_size = 299
-# 色 RGBのため３
-color = 1
-# 係数
-param = 0.1
-# 重み
+# Param
+epoch    = 1000  # 繰り返し数
+img_size = 299   # 統一する画像サイズ
+param    = 0.1   # 係数
 rng = MersenneTwister(1234);
-weghit = param * randn(rng, ComplexF32, (img_size, img_size) * color)
-# バイアス　個性
-bias = zeros()
+weghit = param * randn(rng, ComplexF32, (img_size, img_size) * color) # 重み
+bias = zeros()   # バイアス　個性
 
-for i in images.length
-  result = main(images,labels,weghit,bias,i,img_size)
+# 基本処理
+for i in 1:epoch
+  result = main(x_train, y_train, img_size, weghit, bias)
 end
 
 #= installするパッケージ
