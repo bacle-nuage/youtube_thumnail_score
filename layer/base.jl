@@ -4,7 +4,7 @@
 '''
 function prop(x)
     j, k = shape(x)
-    for i in 1:x.nength
+    for i in 1:x.length
         for j
             for k
                 ret = wx + b
