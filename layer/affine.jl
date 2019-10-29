@@ -1,7 +1,12 @@
-function prop()
-    #
-end
 
-function backprop(args)
-    #
+module Affine:
+
+    function prop()
+        #
+    end
+
+    function backprop(args)
+        #
+    end
+
 end

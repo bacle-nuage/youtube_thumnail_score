@@ -1,6 +1,6 @@
 using Common
 
-module Conv:
+module Convolution:
 
     def forward(u, W, b, padding=0, strides=1):
         () -> begin:

@@ -1,3 +1,17 @@
+#= 共通関数 =#
+include("./common.jl")
+include("./layer/convolution.jl")
+include("./layer/relu.jl")
+include("./layer/pooling.jl")
+include("./layer/affine.jl")
+include("./layer/flatten.jl")
+include("./layer/squred_error.jl")
+
+model = create_model
+model = add_layour(model, )
+
+
+
 # packages
 using ImageFilterings
 using CSV
