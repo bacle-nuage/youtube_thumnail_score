@@ -1,7 +1,12 @@
-function prop()
-    #
-end
 
-function backprop(args)
-    #
+module SquredError:
+
+    function prop()
+        #
+    end
+
+    function backprop(args)
+        #
+    end
+
 end

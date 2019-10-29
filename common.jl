@@ -26,7 +26,7 @@ end
 '''
 層の追加
 '''
-function add_layour(func, back_funk; model = NONE)
+function add_layour(model, func, back_funk)
     model
 end
 

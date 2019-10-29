@@ -7,8 +7,24 @@ include("./layer/affine.jl")
 include("./layer/flatten.jl")
 include("./layer/squred_error.jl")
 
+using Convolution
+using Relu
+using Pooling
+using Affine
+using Flatten
+using SquredError
+
+#= model作成 =#
 model = create_model
-model = add_layour(model, )
+
+#= layour 追加 =#
+model = add_layour(model, Convolution.forward, Convolution.back_forward)
+model = add_layour(model, Relu.forward, Relu.back_forward)
+model = add_layour(model, Pooling.forward, Pooling.back_forward)
+
+model = add_layour(model, Convolution.forward, Convolution.back_forward)
+model = add_layour(model, Relu.forward, Relu.back_forward)
+model = add_layour(model, Pooling.forward, Pooling.back_forward)
 
 
 
