@@ -1,9 +1,18 @@
 
+```
+model
+```
+mutable struct Model:
+    layours
+end
+
+function 
+
 '''
 層の追加
 '''
-function add(args)
-    body
+function add(model, func, back_funk)
+    model
 end
 
 '''

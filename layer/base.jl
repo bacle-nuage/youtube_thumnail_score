@@ -1,4 +1,12 @@
 
+```
+コメント
+```
+struct Layour:
+    forward
+    back_forward
+end
+
 '''
 順伝播
 '''
