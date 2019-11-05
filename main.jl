@@ -15,7 +15,7 @@ using Flatten
 using SquredError
 
 #= model作成 =#
-model = create_model
+model = create_model(128*128)
 
 #= layour 追加 =#
 model = add_layour(model, Convolution.forward, Convolution.back_forward)
@@ -25,6 +25,15 @@ model = add_layour(model, Pooling.forward, Pooling.back_forward)
 model = add_layour(model, Convolution.forward, Convolution.back_forward)
 model = add_layour(model, Relu.forward, Relu.back_forward)
 model = add_layour(model, Pooling.forward, Pooling.back_forward)
+
+model = add_layour(model, Affine.forward, Affine.back_forward)
+model = add_layour(model, Relu.forward, Relu.back_forward)
+
+model = add_layour(model, Affine.forward, Affine.back_forward)
+model = add_layour(model, Relu.forward, Relu.back_forward)
+
+model = set_error(model, SquredError.forward)
+
 
 
 
